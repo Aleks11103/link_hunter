@@ -50,16 +50,22 @@
       <div class="column column-width-one-half">
         <h4>Quick Contact</h4>
 
-        <form class="wpcf7" method="post" action="contact.php" id="contactform">
+        <form class="wpcf7" method="post" id="contactform">
           {% csrf_token %}
+          {% if form.non_field_errors %}
+          <div>{{ form.non_field_errors }}</div>
+          {% endif %}
           <div class="form">
             <p>
+              {{ form.name.errors }}
               {{ form.name }}
             </p>
             <p>
+              {{ form.email.errors }}
               {{ form.email }}
             </p>
             <p>
+              {{ form.message.errors }}
               {{ form.message }}
             </p>
             <input

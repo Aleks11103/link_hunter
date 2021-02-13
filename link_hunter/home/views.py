@@ -18,7 +18,7 @@ def contact_page(request):
         "form": QuickContactForm(),
     }
     if request.method == 'POST':
-        form = QuicContactForm(request.POST)
+        form = QuickContactForm(request.POST)
         if form.is_valid():
             form.save()
             return HttpResponseRedirect('/home/')

@@ -12,6 +12,10 @@ class QuickContact(models.Model):
     message = models.TextField(
         verbose_name="Message",
     )
+    is_moderate = models.BooleanField(
+        default=False,
+        verbose_name="Is moderations",
+    )
 
 
     class Meta:

@@ -24,9 +24,22 @@
             <li>
               <a href="portfolio-category.html">Portfolio Category</a>
             </li>
+            
           </ul>
         </li> {% endcomment %}
         <li><a href={% url 'contact_page' %}>Contact</a></li>
+        {% if user.is_authenticated %}
+        <li>
+          <a href={% url 'user_logout' %}>Logout</a>
+        </li>
+        {% else %}
+        <li>
+          <a href={% url 'user_login' %}>Login</a>
+        </li>
+        <li>
+          <a href=''>Register</a>
+        </li>
+        {% endif %}
       </ul>
     </div>
   </nav>

@@ -8,7 +8,7 @@ class QuickContactForm(forms.Form):
         label='User name',
         widget=forms.TextInput(
             attrs={
-                'placeholder': 'Name *'
+                'placeholder': 'Name *',
             }
         ),
     )
@@ -30,10 +30,22 @@ class QuickContactForm(forms.Form):
     )
 
     def save(self):
-        QuickContact.objects.create(**self.cleaned_data)
+        return QuickContact.objects.create(**self.cleaned_data)
 
     def clean(self):
-        print("VALIDACIYA!!!")
+        error = False
+        if len(self.cleaned_data['name']) > 30:
+            error = True
+            self.add_error('name', ['Максимум 30 символов', 'Ещё какая-то ошибка'])
+        if not self.cleaned_data['email'].endswith(".com"):
+            error = True
+            self.add_error('email', 'Не кашерный email')
+        if 'FUCK' in self.cleaned_data['message']:
+            error = True
+            self.add_error('message', 'Не ругайтесь!!!')
+        if error:
+            raise forms.ValidationError('Не корректные данные!!!')
+        print(self.cleaned_data)
         return self.cleaned_data
 
 
@@ -41,4 +53,4 @@ class QuickForm(forms.ModelForm):
     
     class Meta:
         model = QuickContact
-        fields = "__all__"
+        exclude = ('is_moderate',)

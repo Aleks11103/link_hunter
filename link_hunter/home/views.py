@@ -2,7 +2,6 @@ from django.shortcuts import render, HttpResponseRedirect
 from home.forms import QuickContactForm, QuickForm
 
 
-# Create your views here.
 def home_page(request):
     context = {}
     return render(request, 'home.html', context)

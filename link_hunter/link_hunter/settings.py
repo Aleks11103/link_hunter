@@ -123,5 +123,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'link_hunter' / 'static'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'link_hunter' / 'media'
 
 AUTH_USER_MODEL = 'user.User'
